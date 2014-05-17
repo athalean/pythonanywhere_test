@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hello!!!</h1>
+
+    <p>This is my first site hosted on <a href="http://pythonanywhere.com">PythonAnywhere!</a></p>
+
+    <p>It can tell you that it's {{ now }}! (In Germany at least)</p>
+    {% if christmas.days %}
+    <p>And that it's no more than {{ christmas.days }} days until Christmas!</p>
+    {% else %}
+    <p>And that today is Christmas! Squeee!</p>
+    {% endif %}
+    <p>Well, what do you think about it?</p>
+
+    <h2>What everyone thinks!</h2>
+
+    <ul style="">
+    {% for comment in comments %}
+        <li>
+            <blockquote>
+                {{ comment.content }}
+            </blockquote>
+            <cite>by {{ comment.poster }}</cite>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <hr/>
+
+    <form action="{% url 'post' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send it henceforth!</button>
+    </form>
+{% endblock %}
