@@ -10,13 +10,14 @@ from panywhere.models import Comment
 
 
 def home(request):
-    christmas = datetime(year=now().year, day=25, month=12, tzinfo=now().tzinfo)-now()
+    current_now = now()
+    christmas = datetime(year=current_now.year, day=25, month=12, tzinfo=current_now.tzinfo)- current_now
     if christmas < timedelta(0):
-        christmas = datetime(year=now().year+1, day=25, month=12, tzinfo=now().tzinfo)-now()
+        christmas = datetime(year=current_now.year+1, day=25, month=12, tzinfo=current_now.tzinfo)- current_now
     return render_to_response('home.html',
         RequestContext(request, {
         'comments': Comment.objects.all(),
-        'now': now(),
+        'now': current_now,
         'christmas': christmas,
         'form': CommentForm()
     }))
