@@ -15,10 +15,10 @@
 
     <h2>What everyone thinks!</h2>
 
-    <ul style="">
+    <ul style="list-style: none; padding-left: 1em;">
     {% for comment in comments %}
         <li>
-            <blockquote>
+            <blockquote style="margin-left: 0px">
                 {{ comment.content }}
             </blockquote>
             <cite>by {{ comment.poster }}</cite>
